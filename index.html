@@ -811,6 +811,322 @@
 
     .footer-social a:hover { color: var(--accent); }
 
+    /* Pricing Section */
+    .pricing-section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .pricing-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-header h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .pricing-header p {
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    .pricing-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+
+    .pricing-tab {
+      padding: 10px 24px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pricing-tab:hover {
+      border-color: var(--border-light);
+      color: var(--text);
+    }
+
+    .pricing-tab.active {
+      background: var(--bg-elevated);
+      border-color: var(--border-light);
+      color: var(--text);
+    }
+
+    .pricing-content {
+      display: none;
+    }
+
+    .pricing-content.active {
+      display: block;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      transition: border-color 0.2s ease;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .pricing-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+    }
+
+    .pricing-card-name {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .pricing-badge {
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-left: auto;
+    }
+
+    .pricing-price {
+      margin-bottom: 8px;
+    }
+
+    .pricing-price .amount {
+      font-size: 42px;
+      font-weight: 700;
+    }
+
+    .pricing-price .unit {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .pricing-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .pricing-benchmark {
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--bg-elevated);
+      border-radius: 12px;
+    }
+
+    .benchmark-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .benchmark-title {
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .benchmark-title svg {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+    }
+
+    .benchmark-link {
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .benchmark-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .benchmark-item {
+      margin-bottom: 12px;
+    }
+
+    .benchmark-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .benchmark-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .benchmark-name {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .benchmark-value {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .benchmark-bar {
+      height: 6px;
+      background: var(--bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .benchmark-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .benchmark-fill.easy {
+      background: linear-gradient(90deg, #a855f7, #6366f1);
+    }
+
+    .benchmark-fill.hard {
+      background: linear-gradient(90deg, #00d4ff, #0891b2);
+    }
+
+    .pricing-highlight {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .pricing-btn {
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      margin-bottom: 16px;
+    }
+
+    .pricing-btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .pricing-btn-primary:hover {
+      background: var(--text-secondary);
+    }
+
+    .pricing-btn-secondary {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .pricing-btn-secondary:hover {
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .pricing-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .pricing-footer svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Subscription card styles */
+    .pricing-features {
+      margin-bottom: 24px;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .pricing-feature svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pricing-enterprise .pricing-price .amount {
+      font-size: 32px;
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
     /* Large VORA Brand Section */
     .brand-section {
       padding: 60px 0 40px;
@@ -1921,6 +2237,234 @@
   </section>
 
   <!-- CTA -->
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <h2>Simple, Transparent Pricing</h2>
+        <p>Choose the plan that fits your security needs</p>
+      </div>
+
+      <div class="pricing-tabs">
+        <button class="pricing-tab active" data-tab="pay-per-scan">Pay-Per-Scan</button>
+        <button class="pricing-tab" data-tab="subscription">Subscription</button>
+      </div>
+
+      <!-- Pay-Per-Scan Content -->
+      <div class="pricing-content active" id="pay-per-scan">
+        <div class="pricing-grid">
+          <!-- Developer Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <svg class="pricing-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+              </svg>
+              <span class="pricing-card-name">Developer</span>
+              <span class="pricing-badge">Free till 5K tokens</span>
+            </div>
+            <div class="pricing-price">
+              <span class="amount">$0.002</span>
+              <span class="unit">/ per token</span>
+            </div>
+            <p class="pricing-description">For smart contract review during development</p>
+
+            <div class="pricing-benchmark">
+              <div class="benchmark-header">
+                <span class="benchmark-title">
+                  Vulnerability Detection
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4M12 8h.01"/>
+                  </svg>
+                </span>
+                <a href="#" class="benchmark-link">Read more</a>
+              </div>
+              <div class="benchmark-label">Issues found</div>
+              <div class="benchmark-item">
+                <div class="benchmark-row">
+                  <span class="benchmark-name">Common</span>
+                  <span class="benchmark-value">47%</span>
+                </div>
+                <div class="benchmark-bar">
+                  <div class="benchmark-fill easy" style="width: 47%"></div>
+                </div>
+              </div>
+              <div class="benchmark-item">
+                <div class="benchmark-row">
+                  <span class="benchmark-name">Critical</span>
+                  <span class="benchmark-value">15%</span>
+                </div>
+                <div class="benchmark-bar">
+                  <div class="benchmark-fill hard" style="width: 15%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="pricing-btn pricing-btn-primary">Get Started</button>
+            <div class="pricing-footer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <span>Up to 1 hour per scan</span>
+            </div>
+          </div>
+
+          <!-- Auditor Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <svg class="pricing-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span class="pricing-card-name">Auditor</span>
+            </div>
+            <div class="pricing-price">
+              <span class="amount">$0.01</span>
+              <span class="unit">/ per token</span>
+            </div>
+            <p class="pricing-description">For audit and deployment preparation</p>
+
+            <div class="pricing-benchmark">
+              <div class="benchmark-header">
+                <span class="benchmark-title">
+                  Vulnerability Detection
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4M12 8h.01"/>
+                  </svg>
+                </span>
+                <a href="#" class="benchmark-link">Read more</a>
+              </div>
+              <div class="benchmark-label">Issues found</div>
+              <div class="benchmark-item">
+                <div class="benchmark-row">
+                  <span class="benchmark-name">Common</span>
+                  <span class="benchmark-value">78%</span>
+                </div>
+                <div class="benchmark-bar">
+                  <div class="benchmark-fill easy" style="width: 78%"></div>
+                </div>
+              </div>
+              <div class="benchmark-item">
+                <div class="benchmark-row">
+                  <span class="benchmark-name">Critical</span>
+                  <span class="benchmark-value">47%</span>
+                </div>
+                <div class="benchmark-bar">
+                  <div class="benchmark-fill hard" style="width: 47%"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="pricing-highlight">3x more critical bugs detected</p>
+            <button class="pricing-btn pricing-btn-primary">Get Started</button>
+            <div class="pricing-footer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <span>Up to 5 hours per scan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscription Content -->
+      <div class="pricing-content" id="subscription">
+        <div class="pricing-grid">
+          <!-- Pro Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <svg class="pricing-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <span class="pricing-card-name">Pro Plan</span>
+            </div>
+            <div class="pricing-price">
+              <span class="amount">$199</span>
+              <span class="unit">/ month</span>
+            </div>
+            <p class="pricing-description">Ideal for growing teams and active development</p>
+
+            <button class="pricing-btn pricing-btn-primary">Get Started</button>
+
+            <div class="pricing-features">
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>23,000 credits per month (Worth $230)*</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Team Mode (up to 3 members)</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>CI Integration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="pricing-card pricing-enterprise">
+            <div class="pricing-card-header">
+              <svg class="pricing-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+              </svg>
+              <span class="pricing-card-name">Enterprise Plan</span>
+            </div>
+            <div class="pricing-price">
+              <span class="amount">Get in touch</span>
+            </div>
+            <p class="pricing-description">Perfect for large projects and pre-audit checkup</p>
+
+            <button class="pricing-btn pricing-btn-secondary">Contact Us</button>
+
+            <div class="pricing-features">
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Higher savings on monthly credits*</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Team Mode (up to 10 members)</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>CI Integration</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Dedicated Telegram or Slack channel support</span>
+              </div>
+              <div class="pricing-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span>Priority Requests on new features</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pricing-note">*Credits can be accumulated for 3 months</p>
+      </div>
+    </div>
+  </section>
+
   <section class="cta">
     <div class="container">
       <h2>Get Started</h2>
@@ -2091,5 +2635,17 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Pricing tabs functionality
+    document.querySelectorAll('.pricing-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.pricing-content').forEach(content => content.classList.remove('active'));
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
