@@ -546,60 +546,6 @@
       color: var(--text-secondary);
     }
 
-    /* CLI Reference */
-    .cli-ref {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .cli-ref h2 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .cli-ref-sub {
-      color: var(--text-secondary);
-      font-size: 16px;
-      margin-bottom: 32px;
-    }
-
-    .cli-commands {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .cli-cmd {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      align-items: center;
-    }
-
-    .cli-cmd:last-child { border-bottom: none; }
-
-    @media (max-width: 640px) {
-      .cli-cmd { grid-template-columns: 1fr; gap: 8px; }
-    }
-
-    .cli-cmd code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .cli-cmd code .flag { color: var(--purple); }
-    .cli-cmd code .value { color: var(--yellow); }
-
-    .cli-cmd-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-
     /* Integrations */
     .integrations {
       padding: 60px 0;
@@ -729,7 +675,6 @@
       <nav class="nav">
         <a href="#detections">Detections</a>
         <a href="#how-it-works">How It Works</a>
-        <a href="#cli">CLI Reference</a>
         <a href="#">Docs</a>
         <a href="https://github.com" target="_blank">GitHub</a>
       </nav>
@@ -986,41 +931,6 @@
     </div>
   </section>
 
-  <!-- CLI Reference -->
-  <section class="cli-ref" id="cli">
-    <div class="container">
-      <h2>CLI Reference</h2>
-      <p class="cli-ref-sub">Common commands and options. See <a href="#" style="color: var(--orange);">full documentation</a> for all flags.</p>
-
-      <div class="cli-commands">
-        <div class="cli-cmd">
-          <code>vora scan <span class="value">./contracts</span></code>
-          <span class="cli-cmd-desc">Scan directory for vulnerabilities</span>
-        </div>
-        <div class="cli-cmd">
-          <code>vora scan <span class="flag">--fix</span></code>
-          <span class="cli-cmd-desc">Generate fixes for detected issues</span>
-        </div>
-        <div class="cli-cmd">
-          <code>vora scan <span class="flag">--pr</span></code>
-          <span class="cli-cmd-desc">Create GitHub PR with fixes</span>
-        </div>
-        <div class="cli-cmd">
-          <code>vora scan <span class="flag">--severity</span> <span class="value">critical,high</span></code>
-          <span class="cli-cmd-desc">Filter by severity level</span>
-        </div>
-        <div class="cli-cmd">
-          <code>vora scan <span class="flag">--ignore</span> <span class="value">VORA-001</span></code>
-          <span class="cli-cmd-desc">Ignore specific detection rules</span>
-        </div>
-        <div class="cli-cmd">
-          <code>vora scan <span class="flag">--output</span> <span class="value">json</span></code>
-          <span class="cli-cmd-desc">Output format: json, sarif, markdown</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Integrations -->
   <section class="integrations">
     <div class="container">
@@ -1078,7 +988,6 @@
       <nav class="footer-links">
         <a href="#detections">Detections</a>
         <a href="#how-it-works">How It Works</a>
-        <a href="#cli">CLI Reference</a>
         <a href="#">Documentation</a>
         <a href="https://github.com" target="_blank">GitHub</a>
       </nav>
