@@ -1976,6 +1976,8 @@
             </feMerge>
           </filter>
         </defs>
+        <!-- Center all letters (shift by 70px to center in 500px viewBox) -->
+        <g transform="translate(70, 0)">
         <!-- O - equal spacing (gap=20): V ends ~90, O: 110-190, center at 150 -->
         <g class="letter-o">
           <path class="glow-layer" d="M190 60 A40 40 0 1 1 190 59.9" stroke-width="4"/>
@@ -2068,6 +2070,7 @@
           <animate attributeName="cx" values="100;190;285;210;100" dur="10s" repeatCount="indefinite"/>
           <animate attributeName="cy" values="40;80;40;80;40" dur="10s" repeatCount="indefinite"/>
         </circle>
+        </g>
       </svg>
     </div>
   </section>
