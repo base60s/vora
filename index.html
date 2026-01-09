@@ -1976,40 +1976,40 @@
             </feMerge>
           </filter>
         </defs>
-        <!-- O - repositioned closer -->
+        <!-- O - positioned after V (V ends at ~90, O starts at 100) -->
         <g class="letter-o">
-          <path class="glow-layer" d="M135 60 A40 40 0 1 1 135 59.9" stroke-width="4"/>
-          <path class="letter-stroke" d="M135 60 A40 40 0 1 1 135 59.9" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
+          <path class="glow-layer" d="M180 60 A40 40 0 1 1 180 59.9" stroke-width="4"/>
+          <path class="letter-stroke" d="M180 60 A40 40 0 1 1 180 59.9" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
         </g>
-        <!-- R - repositioned closer -->
+        <!-- R - positioned after O -->
         <g class="letter-r">
-          <path class="glow-layer" d="M195 105 L195 15 L235 15 A25 25 0 0 1 235 55 L195 55 L250 105" stroke-width="4"/>
-          <path class="letter-stroke" d="M195 105 L195 15 L235 15 A25 25 0 0 1 235 55 L195 55 L250 105" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
+          <path class="glow-layer" d="M205 105 L205 15 L245 15 A25 25 0 0 1 245 55 L205 55 L260 105" stroke-width="4"/>
+          <path class="letter-stroke" d="M205 105 L205 15 L245 15 A25 25 0 0 1 245 55 L205 55 L260 105" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
         </g>
-        <!-- A - repositioned closer -->
+        <!-- A - positioned after R -->
         <g class="letter-a">
-          <path class="glow-layer" d="M270 105 L305 15 L340 105 M282 70 L328 70" stroke-width="4"/>
-          <path class="letter-stroke" d="M270 105 L305 15 L340 105 M282 70 L328 70" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
+          <path class="glow-layer" d="M280 105 L315 15 L350 105 M292 70 L338 70" stroke-width="4"/>
+          <path class="letter-stroke" d="M280 105 L315 15 L350 105 M292 70 L338 70" stroke="url(#brandGradient)" stroke-width="2" fill="none"/>
         </g>
 
         <!-- Scanning beam that follows the snake -->
         <g class="scan-beam">
           <rect x="80" y="-10" width="25" height="140" fill="url(#scanBeamGradient)" filter="url(#scanGlow)" opacity="0">
-            <animate attributeName="x" values="80;350;350;80;80" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
+            <animate attributeName="x" values="80;360;360;80;80" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
             <animate attributeName="opacity" values="0;0.6;0.6;0;0" dur="6s" repeatCount="indefinite" keyTimes="0;0.1;0.5;0.9;1"/>
           </rect>
           <line x1="92" y1="-5" x2="92" y2="125" stroke="#00d4ff" stroke-width="2" opacity="0">
-            <animate attributeName="x1" values="92;362;362;92;92" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
-            <animate attributeName="x2" values="92;362;362;92;92" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
+            <animate attributeName="x1" values="92;372;372;92;92" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
+            <animate attributeName="x2" values="92;372;372;92;92" dur="6s" repeatCount="indefinite" keyTimes="0;0.4;0.6;0.9;1"/>
             <animate attributeName="opacity" values="0;1;1;0;0" dur="6s" repeatCount="indefinite" keyTimes="0;0.1;0.5;0.9;1"/>
           </line>
         </g>
 
         <!-- V (Snake) - with scanning and slithering animation -->
         <g class="snake-v">
-          <!-- Scanning movement (left to right) -->
+          <!-- Scanning movement (left to right) - scans across ORA then returns to V position -->
           <animateTransform attributeName="transform" type="translate"
-            values="0,0; 280,0; 280,0; 0,0; 0,0"
+            values="0,0; 290,0; 290,0; 0,0; 0,0"
             keyTimes="0; 0.4; 0.6; 0.9; 1"
             dur="6s" repeatCount="indefinite"/>
 
@@ -2133,12 +2133,12 @@
 
         <!-- Animated particles -->
         <circle r="2" fill="#00d4ff" opacity="0.6">
-          <animate attributeName="cx" values="60;135;220;305;60" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="60;140;230;315;60" dur="8s" repeatCount="indefinite"/>
           <animate attributeName="cy" values="60;60;60;60;60" dur="8s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.6;0.8;0.6;0.8;0.6" dur="8s" repeatCount="indefinite"/>
         </circle>
         <circle r="1.5" fill="#00d4ff" opacity="0.4">
-          <animate attributeName="cx" values="100;200;300;170;100" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="100;180;280;200;100" dur="10s" repeatCount="indefinite"/>
           <animate attributeName="cy" values="40;80;40;80;40" dur="10s" repeatCount="indefinite"/>
         </circle>
       </svg>
