@@ -2005,88 +2005,129 @@
           </line>
         </g>
 
-        <!-- V (Snake) - with scanning animation -->
+        <!-- V (Snake) - with scanning and slithering animation -->
         <g class="snake-v">
-          <!-- SVG SMIL animation for scanning movement -->
+          <!-- Scanning movement (left to right) -->
           <animateTransform attributeName="transform" type="translate"
             values="0,0; 280,0; 280,0; 0,0; 0,0"
             keyTimes="0; 0.4; 0.6; 0.9; 1"
             dur="6s" repeatCount="indefinite"/>
 
-          <!-- Snake body - outer glow -->
-          <path class="glow-layer" d="M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5" stroke-width="5"/>
+          <!-- Snake body with slithering animation -->
+          <g class="snake-body">
+            <!-- Subtle vertical wave motion -->
+            <animateTransform attributeName="transform" type="translate"
+              values="0,0; 0,-3; 0,0; 0,3; 0,0"
+              dur="0.8s" repeatCount="indefinite" additive="sum"/>
 
-          <!-- Snake body - main outline -->
-          <path d="M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5"
-                stroke="url(#brandGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Snake body - outer glow -->
+            <path class="glow-layer" stroke-width="5">
+              <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+                values="M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5;
+                        M30 5 C32 18 30 38 43 58 C52 75 60 92 60 108 C60 92 68 75 77 58 C88 38 88 18 90 5;
+                        M32 5 C28 18 36 38 47 58 C56 75 58 92 60 108 C62 92 64 75 73 58 C84 38 92 18 88 5;
+                        M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5"/>
+            </path>
 
-          <!-- Snake body - belly line detail -->
-          <path d="M35 12 C34 22 37 40 47 58 C55 73 58 88 60 100"
-                stroke="url(#brandGradient)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.4"/>
-          <path d="M60 100 C62 88 65 73 73 58 C83 40 86 22 85 12"
-                stroke="url(#brandGradient)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <!-- Snake body - main outline with undulation -->
+            <path stroke="url(#brandGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+                values="M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5;
+                        M30 5 C32 18 30 38 43 58 C52 75 60 92 60 108 C60 92 68 75 77 58 C88 38 88 18 90 5;
+                        M32 5 C28 18 36 38 47 58 C56 75 58 92 60 108 C62 92 64 75 73 58 C84 38 92 18 88 5;
+                        M32 5 C30 18 34 38 45 58 C54 75 58 92 60 108 C62 92 66 75 75 58 C86 38 90 18 88 5"/>
+            </path>
 
-          <!-- Scale marks on body -->
-          <g opacity="0.3" stroke="url(#brandGradient)" stroke-width="0.5" fill="none">
-            <path d="M33 20 Q36 22 33 24"/>
-            <path d="M35 32 Q38 34 35 36"/>
-            <path d="M40 44 Q43 46 40 48"/>
-            <path d="M48 58 Q51 60 48 62"/>
-            <path d="M54 74 Q57 76 54 78"/>
-            <path d="M87 20 Q84 22 87 24"/>
-            <path d="M85 32 Q82 34 85 36"/>
-            <path d="M80 44 Q77 46 80 48"/>
-            <path d="M72 58 Q69 60 72 62"/>
-            <path d="M66 74 Q63 76 66 78"/>
+            <!-- Snake body - belly line detail (left side) -->
+            <path stroke="url(#brandGradient)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.4">
+              <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+                values="M35 12 C34 22 37 40 47 58 C55 73 58 88 60 100;
+                        M33 12 C35 22 33 40 45 58 C53 73 60 88 60 100;
+                        M35 12 C31 22 39 40 49 58 C57 73 58 88 60 100;
+                        M35 12 C34 22 37 40 47 58 C55 73 58 88 60 100"/>
+            </path>
+            <!-- Snake body - belly line detail (right side) -->
+            <path stroke="url(#brandGradient)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.4">
+              <animate attributeName="d" dur="0.6s" repeatCount="indefinite"
+                values="M60 100 C62 88 65 73 73 58 C83 40 86 22 85 12;
+                        M60 100 C60 88 67 73 75 58 C85 40 85 22 87 12;
+                        M60 100 C62 88 63 73 71 58 C81 40 89 22 85 12;
+                        M60 100 C62 88 65 73 73 58 C83 40 86 22 85 12"/>
+            </path>
+
+            <!-- Scale marks on body -->
+            <g opacity="0.3" stroke="url(#brandGradient)" stroke-width="0.5" fill="none">
+              <path d="M33 20 Q36 22 33 24"/>
+              <path d="M35 32 Q38 34 35 36"/>
+              <path d="M40 44 Q43 46 40 48"/>
+              <path d="M48 58 Q51 60 48 62"/>
+              <path d="M54 74 Q57 76 54 78"/>
+              <path d="M87 20 Q84 22 87 24"/>
+              <path d="M85 32 Q82 34 85 36"/>
+              <path d="M80 44 Q77 46 80 48"/>
+              <path d="M72 58 Q69 60 72 62"/>
+              <path d="M66 74 Q63 76 66 78"/>
+            </g>
           </g>
 
-          <!-- Snake head - main shape (diamond/viper style) -->
-          <path d="M12 22 L32 5 L24 -2 L6 10 Z"
-                stroke="url(#brandGradient)" stroke-width="2" stroke-linejoin="round" fill="none"/>
+          <!-- Snake head group with weaving motion -->
+          <g class="snake-head">
+            <!-- Head weaving/bobbing motion -->
+            <animateTransform attributeName="transform" type="translate"
+              values="0,0; -2,-2; 0,0; 2,-1; 0,0"
+              dur="1.2s" repeatCount="indefinite" additive="sum"/>
+            <animateTransform attributeName="transform" type="rotate"
+              values="0 18 10; -5 18 10; 0 18 10; 5 18 10; 0 18 10"
+              dur="1.2s" repeatCount="indefinite" additive="sum"/>
 
-          <!-- Snake head - top surface detail -->
-          <path d="M14 18 Q22 8 28 6" stroke="url(#brandGradient)" stroke-width="1" fill="none" opacity="0.5"/>
-          <path d="M10 14 Q16 6 22 4" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.3"/>
+            <!-- Snake head - main shape (diamond/viper style) -->
+            <path d="M12 22 L32 5 L24 -2 L6 10 Z"
+                  stroke="url(#brandGradient)" stroke-width="2" stroke-linejoin="round" fill="none"/>
 
-          <!-- Snake head - jaw line -->
-          <path d="M6 10 Q4 16 6 20 Q10 22 12 22" stroke="url(#brandGradient)" stroke-width="1.5" fill="none"/>
+            <!-- Snake head - top surface detail -->
+            <path d="M14 18 Q22 8 28 6" stroke="url(#brandGradient)" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M10 14 Q16 6 22 4" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.3"/>
 
-          <!-- Snake eye - outer ring -->
-          <ellipse cx="18" cy="10" rx="7" ry="8" stroke="url(#brandGradient)" stroke-width="1.5" fill="none"/>
+            <!-- Snake head - jaw line -->
+            <path d="M6 10 Q4 16 6 20 Q10 22 12 22" stroke="url(#brandGradient)" stroke-width="1.5" fill="none"/>
 
-          <!-- Snake eye - middle ring -->
-          <ellipse cx="18" cy="10" rx="5" ry="6" stroke="url(#brandGradient)" stroke-width="1" fill="none" opacity="0.6"/>
+            <!-- Snake eye - outer ring -->
+            <ellipse cx="18" cy="10" rx="7" ry="8" stroke="url(#brandGradient)" stroke-width="1.5" fill="none"/>
 
-          <!-- Snake eye - pupil (vertical slit) -->
-          <ellipse cx="18" cy="10" rx="1.8" ry="5" stroke="url(#brandGradient)" stroke-width="1.2" fill="none">
-            <animate attributeName="rx" values="1.8;3;1.8" dur="4s" repeatCount="indefinite"/>
-          </ellipse>
+            <!-- Snake eye - middle ring -->
+            <ellipse cx="18" cy="10" rx="5" ry="6" stroke="url(#brandGradient)" stroke-width="1" fill="none" opacity="0.6"/>
 
-          <!-- Eye center dot -->
-          <circle cx="18" cy="10" r="0.8" fill="#00d4ff" opacity="0.8">
-            <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
-          </circle>
+            <!-- Snake eye - pupil (vertical slit) -->
+            <ellipse cx="18" cy="10" rx="1.8" ry="5" stroke="url(#brandGradient)" stroke-width="1.2" fill="none">
+              <animate attributeName="rx" values="1.8;3;1.8" dur="4s" repeatCount="indefinite"/>
+            </ellipse>
 
-          <!-- Eye reflection highlights -->
-          <circle cx="15" cy="7" r="1.5" stroke="url(#brandGradient)" stroke-width="0.5" fill="none" opacity="0.5"/>
+            <!-- Eye center dot -->
+            <circle cx="18" cy="10" r="0.8" fill="#00d4ff" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+            </circle>
 
-          <!-- Snake nostril -->
-          <ellipse cx="6" cy="16" rx="1.2" ry="0.8" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.6"/>
+            <!-- Eye reflection highlights -->
+            <circle cx="15" cy="7" r="1.5" stroke="url(#brandGradient)" stroke-width="0.5" fill="none" opacity="0.5"/>
 
-          <!-- Brow ridge detail -->
-          <path d="M10 5 Q18 2 26 4" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.4"/>
+            <!-- Snake nostril -->
+            <ellipse cx="6" cy="16" rx="1.2" ry="0.8" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.6"/>
 
-          <!-- Forked tongue -->
-          <g class="snake-tongue-group">
-            <path d="M2 18 L-6 18" stroke="url(#brandGradient)" stroke-width="1.5" stroke-linecap="round" fill="none">
-              <animate attributeName="d" values="M2 18 L-6 18;M2 18 L-12 18;M2 18 L-6 18" dur="0.8s" repeatCount="indefinite"/>
-            </path>
-            <path d="M-6 18 Q-10 14 -14 10" stroke="url(#brandGradient)" stroke-width="1.2" stroke-linecap="round" fill="none">
-              <animate attributeName="d" values="M-6 18 Q-10 14 -14 10;M-12 18 Q-16 12 -22 6;M-6 18 Q-10 14 -14 10" dur="0.8s" repeatCount="indefinite"/>
-            </path>
-            <path d="M-6 18 Q-10 22 -14 26" stroke="url(#brandGradient)" stroke-width="1.2" stroke-linecap="round" fill="none">
-              <animate attributeName="d" values="M-6 18 Q-10 22 -14 26;M-12 18 Q-16 24 -22 30;M-6 18 Q-10 22 -14 26" dur="0.8s" repeatCount="indefinite"/>
-            </path>
+            <!-- Brow ridge detail -->
+            <path d="M10 5 Q18 2 26 4" stroke="url(#brandGradient)" stroke-width="0.8" fill="none" opacity="0.4"/>
+
+            <!-- Forked tongue with faster flick during scan -->
+            <g class="snake-tongue-group">
+              <path d="M2 18 L-6 18" stroke="url(#brandGradient)" stroke-width="1.5" stroke-linecap="round" fill="none">
+                <animate attributeName="d" values="M2 18 L-6 18;M2 18 L-14 18;M2 18 L-6 18" dur="0.4s" repeatCount="indefinite"/>
+              </path>
+              <path d="M-6 18 Q-10 14 -14 10" stroke="url(#brandGradient)" stroke-width="1.2" stroke-linecap="round" fill="none">
+                <animate attributeName="d" values="M-6 18 Q-10 14 -14 10;M-14 18 Q-18 12 -24 6;M-6 18 Q-10 14 -14 10" dur="0.4s" repeatCount="indefinite"/>
+              </path>
+              <path d="M-6 18 Q-10 22 -14 26" stroke="url(#brandGradient)" stroke-width="1.2" stroke-linecap="round" fill="none">
+                <animate attributeName="d" values="M-6 18 Q-10 22 -14 26;M-14 18 Q-18 24 -24 30;M-6 18 Q-10 22 -14 26" dur="0.4s" repeatCount="indefinite"/>
+              </path>
+            </g>
           </g>
         </g>
 
