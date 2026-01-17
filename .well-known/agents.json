@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vora.dev/schemas/agent-manifest.json",
+  "name": "vora",
+  "description": "Solidity smart contract security scanner",
+  "version": "0.1.0-beta",
+
+  "canonical": "/agents.json",
+  "docs": "/docs/agents/",
+
+  "capabilities": [
+    "DETECT vulnerabilities: reentrancy, flash-loan, oracle-manipulation, access-control, overflow, front-running",
+    "GENERATE code fixes for detected issues",
+    "CREATE pull requests with fixes applied",
+    "OUTPUT formats: json, sarif, text"
+  ],
+
+  "solves": [
+    "audit smart contracts for security vulnerabilities",
+    "find reentrancy bugs in solidity",
+    "detect flash loan attack vectors",
+    "identify oracle manipulation risks",
+    "check access control on privileged functions",
+    "find integer overflow vulnerabilities",
+    "detect front-running and MEV risks",
+    "auto-fix security issues and create PRs"
+  ],
+
+  "invoke": {
+    "cli": "npx vora scan <path>",
+    "mcp": "npx vora mcp-server"
+  },
+
+  "specs": {
+    "full_manifest": "/agents.json",
+    "capabilities": "/docs/agents/capabilities.yaml",
+    "usage": "/docs/agents/usage.yaml",
+    "cli": "/docs/agents/cli.yaml",
+    "output_schema": "/docs/agents/output-schema.json",
+    "vulnerabilities": "/docs/agents/vulnerabilities.yaml",
+    "errors": "/docs/agents/errors.yaml"
+  }
+}

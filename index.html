@@ -12,8 +12,8 @@
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2300d4ff'/><path d='M8 5C8 8 9 11 11 14C13 18 16 26 16 26C16 26 19 18 21 14C23 11 24 8 24 5' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M8 5C8 8 9 11 11 14C13 18 16 26 16 26C16 26 19 18 21 14C23 11 24 8 24 5' stroke='%2300a8cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none' stroke-dasharray='2 3'/><path d='M4 6L8 5L6 3Z' fill='white'/><ellipse cx='6' cy='5.5' rx='2.5' ry='2' fill='white'/><ellipse cx='5.5' cy='5' rx='1' ry='1.5' fill='%23005566'/><ellipse cx='5.5' cy='5' rx='0.3' ry='1.2' fill='black'/><path d='M3 6.5Q1 5.5 0.5 5M3 6.5Q1 7 0.5 8' stroke='%23ff6b6b' stroke-width='0.8' stroke-linecap='round' fill='none'/></svg>">
 
-  <!-- Agent Discovery -->
-  <link rel="agent-manifest" href="/agents.json" type="application/json">
+  <!-- Agent Discovery (.well-known + root) -->
+  <link rel="agent-manifest" href="/.well-known/agents.json" type="application/json">
   <link rel="alternate" href="/agents.json" type="application/json" title="Agent API">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
