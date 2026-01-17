@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation | VORA</title>
+  <meta name="description" content="VORA documentation - installation, CLI reference, integrations, and vulnerability guides for Solidity smart contract security scanning.">
+
+  <meta property="og:title" content="Documentation | VORA">
+  <meta property="og:description" content="Complete guide to using VORA for smart contract security scanning.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2300d4ff'/><path d='M8 5C8 8 9 11 11 14C13 18 16 26 16 26C16 26 19 18 21 14C23 11 24 8 24 5' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M8 5C8 8 9 11 11 14C13 18 16 26 16 26C16 26 19 18 21 14C23 11 24 8 24 5' stroke='%2300a8cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none' stroke-dasharray='2 3'/><path d='M4 6L8 5L6 3Z' fill='white'/><ellipse cx='6' cy='5.5' rx='2.5' ry='2' fill='white'/><ellipse cx='5.5' cy='5' rx='1' ry='1.5' fill='%23005566'/><ellipse cx='5.5' cy='5' rx='0.3' ry='1.2' fill='black'/><path d='M3 6.5Q1 5.5 0.5 5M3 6.5Q1 7 0.5 8' stroke='%23ff6b6b' stroke-width='0.8' stroke-linecap='round' fill='none'/></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #00d4ff;
+      --accent-dark: #00b8e6;
+      --accent-glow: rgba(0, 212, 255, 0.4);
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #eab308;
+      --purple: #a855f7;
+      --bg: #0a0a0a;
+      --bg-card: #0f0f0f;
+      --bg-elevated: #141414;
+      --border: #1f1f1f;
+      --border-light: #2a2a2a;
+      --text: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-muted: #52525b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .header {
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .logo:hover { text-decoration: none; }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .logo-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav a {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover { color: var(--text); text-decoration: none; }
+
+    /* Docs Layout */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      padding: 48px 0;
+    }
+
+    @media (max-width: 768px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .sidebar { display: none; }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+
+    .sidebar-section {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-links {
+      list-style: none;
+    }
+
+    .sidebar-links li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-links a {
+      color: var(--text-secondary);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .sidebar-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* Content */
+    .content {
+      min-width: 0;
+    }
+
+    .content h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .content h2:first-of-type {
+      margin-top: 32px;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .content ul, .content ol {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .content li {
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* Code blocks */
+    .code-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .code-content {
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .code-content .comment { color: var(--text-muted); }
+    .code-content .keyword { color: var(--purple); }
+    .code-content .string { color: var(--green); }
+    .code-content .flag { color: var(--yellow); }
+    .code-content .cmd { color: var(--text); }
+    .code-content .prompt { color: var(--green); }
+
+    /* Inline code */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-elevated);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text);
+      background: var(--bg-elevated);
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    td code {
+      font-size: 13px;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--border-light);
+    }
+
+    .card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Severity badges */
+    .severity {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .severity.critical { background: rgba(239, 68, 68, 0.2); color: var(--red); }
+    .severity.high { background: rgba(0, 212, 255, 0.2); color: var(--accent); }
+    .severity.medium { background: rgba(234, 179, 8, 0.2); color: var(--yellow); }
+    .severity.low { background: rgba(82, 82, 91, 0.3); color: var(--text-secondary); }
+
+    /* Vulnerability cards */
+    .vuln-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .vuln-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .vuln-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .vuln-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .vuln-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .vuln-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* Callouts */
+    .callout {
+      background: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 24px;
+    }
+
+    .callout.warning {
+      border-left-color: var(--yellow);
+    }
+
+    .callout.error {
+      border-left-color: var(--red);
+    }
+
+    .callout p {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Copy button */
+    .copy-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="/" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3C6 5 6.5 7 8 10C10 14 12 20 12 20C12 20 14 14 16 10C17.5 7 18 5 18 3"/>
+            <path d="M3 4L5.5 3L4.5 1.5Z" fill="white" stroke="none"/>
+            <ellipse cx="4.5" cy="3.5" rx="2" ry="1.5" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        VORA
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#detections">Detections</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/agents.json" target="_blank">Agent API</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <div class="docs-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Getting Started</div>
+          <ul class="sidebar-links">
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">CLI Reference</div>
+          <ul class="sidebar-links">
+            <li><a href="#commands">Commands</a></li>
+            <li><a href="#options">Options</a></li>
+            <li><a href="#output-formats">Output Formats</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Integrations</div>
+          <ul class="sidebar-links">
+            <li><a href="#claude-code">Claude Code</a></li>
+            <li><a href="#cursor">Cursor</a></li>
+            <li><a href="#vscode">VS Code</a></li>
+            <li><a href="#ci-cd">CI/CD</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Vulnerabilities</div>
+          <ul class="sidebar-links">
+            <li><a href="#reentrancy">Reentrancy</a></li>
+            <li><a href="#flash-loan">Flash Loan</a></li>
+            <li><a href="#oracle">Oracle Manipulation</a></li>
+            <li><a href="#access-control">Access Control</a></li>
+            <li><a href="#overflow">Integer Overflow</a></li>
+            <li><a href="#frontrunning">Front-Running</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Reference</div>
+          <ul class="sidebar-links">
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div class="content">
+        <h1>Documentation</h1>
+        <p class="lead">Complete guide to scanning Solidity smart contracts for security vulnerabilities with VORA.</p>
+
+        <!-- Getting Started -->
+        <h2 id="installation">Installation</h2>
+        <p>VORA runs via <code>npx</code> with no installation required. You need Node.js 18+ installed.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('npx vora scan ./contracts')">Copy</button>
+          </div>
+          <div class="code-content">
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span>
+          </div>
+        </div>
+
+        <p>For frequent use, install globally:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('npm install -g vora')">Copy</button>
+          </div>
+          <div class="code-content">
+<span class="prompt">$</span> <span class="cmd">npm install -g vora</span>
+<span class="prompt">$</span> <span class="cmd">vora scan ./contracts</span>
+          </div>
+        </div>
+
+        <h2 id="quick-start">Quick Start</h2>
+        <p>Scan a directory of Solidity files:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+          </div>
+          <div class="code-content">
+<span class="comment"># Scan all .sol files in contracts/</span>
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span>
+
+<span class="comment"># Scan with JSON output for CI</span>
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span> <span class="flag">--output json</span>
+
+<span class="comment"># Only show critical and high severity</span>
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span> <span class="flag">--severity high</span>
+
+<span class="comment"># Generate fixes for detected issues</span>
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span> <span class="flag">--fix</span>
+          </div>
+        </div>
+
+        <h2 id="how-it-works">How It Works</h2>
+        <p>VORA analyzes your Solidity code in three phases:</p>
+        <ol>
+          <li><strong>Parse</strong> &mdash; Solidity files are parsed into an AST with control flow and data flow graphs</li>
+          <li><strong>Detect</strong> &mdash; 200+ static analysis rules run alongside ML models trained on 2,147 real security audits</li>
+          <li><strong>Report</strong> &mdash; Vulnerabilities are ranked by severity with detailed context and fix suggestions</li>
+        </ol>
+
+        <!-- CLI Reference -->
+        <h2 id="commands">Commands</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>vora scan &lt;path&gt;</code></td>
+                <td>Scan files for vulnerabilities</td>
+              </tr>
+              <tr>
+                <td><code>vora mcp-server</code></td>
+                <td>Start MCP server for AI agent integration</td>
+              </tr>
+              <tr>
+                <td><code>vora --version</code></td>
+                <td>Show version</td>
+              </tr>
+              <tr>
+                <td><code>vora --help</code></td>
+                <td>Show help</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="options">Options</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--output, -o</code></td>
+                <td><code>text</code></td>
+                <td>Output format: <code>json</code>, <code>sarif</code>, <code>text</code></td>
+              </tr>
+              <tr>
+                <td><code>--severity, -s</code></td>
+                <td><code>all</code></td>
+                <td>Filter by severity: <code>critical</code>, <code>high</code>, <code>medium</code>, <code>low</code>, <code>all</code></td>
+              </tr>
+              <tr>
+                <td><code>--fix, -f</code></td>
+                <td><code>false</code></td>
+                <td>Generate fix suggestions</td>
+              </tr>
+              <tr>
+                <td><code>--pr</code></td>
+                <td><code>false</code></td>
+                <td>Create pull request with fixes (requires <code>--fix</code>)</td>
+              </tr>
+              <tr>
+                <td><code>--exclude, -e</code></td>
+                <td>&mdash;</td>
+                <td>Glob pattern to exclude (e.g., <code>**/*.test.sol</code>)</td>
+              </tr>
+              <tr>
+                <td><code>--quiet, -q</code></td>
+                <td><code>false</code></td>
+                <td>Suppress progress output</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="output-formats">Output Formats</h2>
+
+        <h3>JSON</h3>
+        <p>Machine-readable format for programmatic parsing:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>JSON Output</span>
+          </div>
+          <div class="code-content">
+{
+  <span class="string">"version"</span>: <span class="string">"0.1.0-beta"</span>,
+  <span class="string">"summary"</span>: { <span class="string">"total"</span>: 3, <span class="string">"critical"</span>: 1, <span class="string">"high"</span>: 2 },
+  <span class="string">"findings"</span>: [
+    {
+      <span class="string">"rule_id"</span>: <span class="string">"VORA-001"</span>,
+      <span class="string">"title"</span>: <span class="string">"Reentrancy"</span>,
+      <span class="string">"severity"</span>: <span class="string">"critical"</span>,
+      <span class="string">"location"</span>: { <span class="string">"file"</span>: <span class="string">"Vault.sol"</span>, <span class="string">"line_start"</span>: 42 },
+      <span class="string">"fix"</span>: { <span class="string">"description"</span>: <span class="string">"Add ReentrancyGuard"</span> }
+    }
+  ]
+}
+          </div>
+        </div>
+
+        <h3>SARIF</h3>
+        <p>Static Analysis Results Interchange Format for GitHub/GitLab integration:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+          </div>
+          <div class="code-content">
+<span class="prompt">$</span> <span class="cmd">npx vora scan ./contracts</span> <span class="flag">--output sarif</span> > results.sarif
+          </div>
+        </div>
+
+        <!-- Integrations -->
+        <h2 id="claude-code">Claude Code Integration</h2>
+        <p>Add VORA as an MCP server for Claude Code:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('claude mcp add vora -- npx vora mcp-server')">Copy</button>
+          </div>
+          <div class="code-content">
+<span class="prompt">$</span> <span class="cmd">claude mcp add vora -- npx vora mcp-server</span>
+          </div>
+        </div>
+
+        <p>Then in Claude Code, you can ask:</p>
+        <ul>
+          <li>"Scan my contracts folder for critical vulnerabilities"</li>
+          <li>"Run a security audit on Vault.sol and fix any reentrancy issues"</li>
+          <li>"Explain the VORA-001 vulnerability"</li>
+        </ul>
+
+        <h2 id="cursor">Cursor Integration</h2>
+        <p>Add to your Cursor MCP configuration at <code>~/.cursor/mcp.json</code>:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>~/.cursor/mcp.json</span>
+          </div>
+          <div class="code-content">
+{
+  <span class="string">"servers"</span>: {
+    <span class="string">"vora"</span>: {
+      <span class="string">"command"</span>: <span class="string">"npx"</span>,
+      <span class="string">"args"</span>: [<span class="string">"vora"</span>, <span class="string">"mcp-server"</span>]
+    }
+  }
+}
+          </div>
+        </div>
+
+        <p>Usage in Cursor chat: <code>@vora scan ./contracts</code></p>
+
+        <h2 id="vscode">VS Code Extension</h2>
+        <p>Install the VORA VS Code extension:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Terminal</span>
+          </div>
+          <div class="code-content">
+<span class="prompt">$</span> <span class="cmd">code --install-extension vora.vora-security</span>
+          </div>
+        </div>
+
+        <p>Available commands:</p>
+        <ul>
+          <li><strong>VORA: Scan Current File</strong> &mdash; Scan the active .sol file</li>
+          <li><strong>VORA: Scan Workspace</strong> &mdash; Scan all Solidity files</li>
+          <li><strong>VORA: Apply Fix</strong> &mdash; Apply suggested fix at cursor</li>
+        </ul>
+
+        <h2 id="ci-cd">CI/CD Integration</h2>
+
+        <h3>GitHub Actions</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span>.github/workflows/security.yml</span>
+          </div>
+          <div class="code-content">
+<span class="keyword">name:</span> Security Scan
+<span class="keyword">on:</span> [push, pull_request]
+<span class="keyword">jobs:</span>
+  <span class="keyword">vora:</span>
+    <span class="keyword">runs-on:</span> ubuntu-latest
+    <span class="keyword">steps:</span>
+      - <span class="keyword">uses:</span> actions/checkout@v4
+      - <span class="keyword">uses:</span> actions/setup-node@v4
+      - <span class="keyword">run:</span> npx vora scan ./contracts --output sarif > results.sarif
+      - <span class="keyword">uses:</span> github/codeql-action/upload-sarif@v3
+        <span class="keyword">with:</span>
+          <span class="keyword">sarif_file:</span> results.sarif
+          </div>
+        </div>
+
+        <h3>GitLab CI</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span>.gitlab-ci.yml</span>
+          </div>
+          <div class="code-content">
+<span class="keyword">security_scan:</span>
+  <span class="keyword">stage:</span> test
+  <span class="keyword">script:</span>
+    - npx vora scan ./contracts --output sarif > vora-results.sarif
+  <span class="keyword">artifacts:</span>
+    <span class="keyword">reports:</span>
+      <span class="keyword">sast:</span> vora-results.sarif
+          </div>
+        </div>
+
+        <!-- Vulnerabilities -->
+        <h2 id="reentrancy">VORA-001: Reentrancy</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-001</span>
+              <span class="severity critical">Critical</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Detects cross-function and cross-contract reentrancy vulnerabilities, including read-only reentrancy patterns.</p>
+
+          <div class="vuln-section-title">Vulnerable Pattern</div>
+          <div class="code-block">
+            <div class="code-content">
+<span class="keyword">function</span> <span class="cmd">withdraw</span>(uint256 amount) <span class="keyword">external</span> {
+    <span class="keyword">require</span>(balances[msg.sender] >= amount);
+    (bool success, ) = msg.sender.call{value: amount}(<span class="string">""</span>);
+    <span class="keyword">require</span>(success);
+    balances[msg.sender] -= amount;  <span class="comment">// State update AFTER call</span>
+}
+            </div>
+          </div>
+
+          <div class="vuln-section-title">Fixed Code</div>
+          <div class="code-block">
+            <div class="code-content">
+<span class="keyword">function</span> <span class="cmd">withdraw</span>(uint256 amount) <span class="keyword">external</span> nonReentrant {
+    <span class="keyword">require</span>(balances[msg.sender] >= amount);
+    balances[msg.sender] -= amount;  <span class="comment">// State update BEFORE call</span>
+    (bool success, ) = msg.sender.call{value: amount}(<span class="string">""</span>);
+    <span class="keyword">require</span>(success);
+}
+            </div>
+          </div>
+        </div>
+
+        <h2 id="flash-loan">VORA-002: Flash Loan Attacks</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-002</span>
+              <span class="severity critical">Critical</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Identifies price manipulation vectors through flash loan-enabled atomic transactions.</p>
+
+          <div class="vuln-section-title">Fix Strategy</div>
+          <ul>
+            <li>Use TWAP (Time-Weighted Average Price) oracles</li>
+            <li>Add price deviation checks</li>
+            <li>Implement flash loan guards</li>
+            <li>Add minimum holding period for price-sensitive operations</li>
+          </ul>
+        </div>
+
+        <h2 id="oracle">VORA-003: Oracle Manipulation</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-003</span>
+              <span class="severity critical">Critical</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Detects vulnerable oracle dependencies and spot price usage without TWAP protection.</p>
+
+          <div class="vuln-section-title">Fix Strategy</div>
+          <ul>
+            <li>Use multiple oracle sources with aggregation</li>
+            <li>Add freshness checks (heartbeat)</li>
+            <li>Implement circuit breakers for extreme deviations</li>
+            <li>Use Chainlink or other decentralized oracles</li>
+          </ul>
+        </div>
+
+        <h2 id="access-control">VORA-004: Access Control</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-004</span>
+              <span class="severity high">High</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Missing or incorrect access control modifiers on privileged functions.</p>
+
+          <div class="vuln-section-title">Vulnerable Pattern</div>
+          <div class="code-block">
+            <div class="code-content">
+<span class="keyword">function</span> <span class="cmd">setFee</span>(uint256 newFee) <span class="keyword">external</span> {
+    fee = newFee;  <span class="comment">// Anyone can change fees!</span>
+}
+            </div>
+          </div>
+
+          <div class="vuln-section-title">Fixed Code</div>
+          <div class="code-block">
+            <div class="code-content">
+<span class="keyword">function</span> <span class="cmd">setFee</span>(uint256 newFee) <span class="keyword">external</span> onlyOwner {
+    <span class="keyword">require</span>(newFee <= MAX_FEE, <span class="string">"Fee too high"</span>);
+    fee = newFee;
+}
+            </div>
+          </div>
+        </div>
+
+        <h2 id="overflow">VORA-005: Integer Overflow</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-005</span>
+              <span class="severity high">High</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Arithmetic operations without SafeMath (pre-0.8.0) or unchecked blocks causing overflow.</p>
+
+          <div class="vuln-section-title">Fix Strategy</div>
+          <ul>
+            <li>Upgrade to Solidity 0.8.0+ for automatic overflow checks</li>
+            <li>Use SafeMath for Solidity &lt; 0.8.0</li>
+            <li>Remove <code>unchecked</code> blocks unless proven safe</li>
+            <li>Add explicit bounds checking</li>
+          </ul>
+        </div>
+
+        <h2 id="frontrunning">VORA-006: Front-Running</h2>
+        <div class="vuln-card">
+          <div class="vuln-header">
+            <div>
+              <span class="vuln-id">VORA-006</span>
+              <span class="severity medium">Medium</span>
+            </div>
+          </div>
+          <p class="vuln-desc">Transaction ordering dependencies and sandwich attack vectors in DEX integrations.</p>
+
+          <div class="vuln-section-title">Fix Strategy</div>
+          <ul>
+            <li>Add slippage tolerance parameters</li>
+            <li>Use commit-reveal schemes for sensitive operations</li>
+            <li>Add transaction deadlines</li>
+            <li>Consider private mempools or Flashbots</li>
+          </ul>
+        </div>
+
+        <!-- Troubleshooting -->
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>Common Errors</h3>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Error</th>
+                <th>Cause</th>
+                <th>Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>E001</code></td>
+                <td>No Solidity files found</td>
+                <td>Check path exists and contains .sol files</td>
+              </tr>
+              <tr>
+                <td><code>E002</code></td>
+                <td>Solidity parse error</td>
+                <td>Check Solidity version compatibility</td>
+              </tr>
+              <tr>
+                <td><code>E003</code></td>
+                <td>Rate limit exceeded</td>
+                <td>Wait or upgrade plan</td>
+              </tr>
+              <tr>
+                <td><code>E004</code></td>
+                <td>Invalid API key</td>
+                <td>Set <code>VORA_API_KEY</code> environment variable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Exit Codes</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>0</code></td><td>Success, no vulnerabilities</td></tr>
+              <tr><td><code>1</code></td><td>Success, vulnerabilities found</td></tr>
+              <tr><td><code>2</code></td><td>Input error</td></tr>
+              <tr><td><code>3</code></td><td>Configuration error</td></tr>
+              <tr><td><code>4</code></td><td>Network error</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="faq">FAQ</h2>
+
+        <h3>What Solidity versions are supported?</h3>
+        <p>VORA supports Solidity 0.4.0 through 0.8.x. Version-specific checks (like SafeMath for pre-0.8) are automatically applied.</p>
+
+        <h3>How accurate is the ML detection?</h3>
+        <p>The ML model was trained on 2,147 real security audits and 12,891 documented vulnerabilities. Detection rates vary by plan:</p>
+        <ul>
+          <li><strong>Developer tier:</strong> 47% medium, 15% high/critical</li>
+          <li><strong>Auditor tier:</strong> 78% medium, 47% high/critical</li>
+        </ul>
+
+        <h3>Can I use VORA in CI/CD without an API key?</h3>
+        <p>Yes, the Developer tier is free up to 5K tokens. For larger projects, set <code>VORA_API_KEY</code>.</p>
+
+        <h3>How do I integrate with my AI coding assistant?</h3>
+        <p>VORA provides an MCP server that works with Claude Code, Cursor, and other MCP-compatible tools. See the <a href="#claude-code">integrations section</a>.</p>
+
+        <div class="callout">
+          <p><strong>Need help?</strong> Check the <a href="/agents.json">Agent API docs</a> for programmatic integration, or open an issue on <a href="https://github.com/base60s/vora">GitHub</a>.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">&copy; 2025 VORA. MIT License.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
